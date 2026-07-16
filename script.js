@@ -326,25 +326,30 @@ document.querySelectorAll(".nav-menu a").forEach(link => {
    CONTACT FORM
 ========================================== */
 
-const form = document.querySelector(".contact-form");
 
-form.addEventListener("submit", function(e){
+const contactForm = document.getElementById("contact-form");
+
+contactForm.addEventListener("submit", function(e){
 
     e.preventDefault();
 
-    const inputs = form.querySelectorAll("input, textarea");
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("message").value;
 
-    let valid = true;
+    const body =
+`Name: ${name}
 
-    inputs.forEach(input => {
+Email: ${email}
 
-        if(input.value.trim() === ""){
+Message:
+${message}`;
 
-            valid = false;
+    window.location.href =
+`mailto:26riaagustinn@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-        }
-
-    });
+});
 
     if(valid){
 
