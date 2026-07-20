@@ -31,11 +31,7 @@ const typingText = [
 
     "Social Media Specialist",
 
-    "Content Marketing",
-
     "Performance Marketing",
-
-    "SEO Enthusiast",
 
     "Growth Marketing"
 
