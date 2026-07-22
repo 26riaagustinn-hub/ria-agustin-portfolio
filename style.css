@@ -615,19 +615,7 @@ header{
 
 .timeline::before{
 
-    content:"";
-
-    position:absolute;
-
-    left:13px;
-
-    top:0;
-
-    width:3px;
-
-    height:100%;
-
-    background:var(--primary);
+    display:none;
 
 }
 
