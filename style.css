@@ -1301,7 +1301,7 @@ grid-template-columns:1fr;
 
 .timeline{
 
-padding-left:25px;
+grid-template-columns:1fr;
 
 }
 
