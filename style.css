@@ -623,25 +623,13 @@ header{
 
     position:relative;
 
-    margin-bottom:60px;
+    margin-bottom:0;
 
 }
 
 .timeline-dot{
 
-    width:22px;
-
-    height:22px;
-
-    background:var(--primary);
-
-    border-radius:50%;
-
-    position:absolute;
-
-    left:-37px;
-
-    top:5px;
+    display:none;
 
 }
 
@@ -654,6 +642,8 @@ header{
     border-radius:20px;
 
     box-shadow:var(--shadow);
+
+    height:100%;
 
 }
 
