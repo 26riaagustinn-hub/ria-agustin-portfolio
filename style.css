@@ -457,9 +457,26 @@ header{
 
 .hero-right img{
 
+    width:100%;
+
+    max-width:370px;
+
+    height:auto;
+
     border-radius:30px;
 
     box-shadow:var(--shadow);
+
+    display:block;
+
+.hero-right{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
 
 }
 
