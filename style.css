@@ -340,19 +340,16 @@ header{
 
 .hero{
 
-    min-height:100vh;
+    min-height:85vh;
 
     display:grid;
 
-    grid-template-columns:
-
-    1fr
-
-    450px;
+    grid-template-columns:1fr 450px;
 
     align-items:center;
 
-    gap:70px;
+    gap:60px;
+
 
 }
 
