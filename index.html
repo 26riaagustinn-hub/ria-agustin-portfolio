@@ -1,839 +1,654 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>Ria Agustin | Digital Marketing Portfolio</title>
 
-<meta name="description"
-content="Portfolio of Ria Agustin - Digital Marketing, Social Media Specialist, Content Marketing, Performance Marketing, SEO, Paid Ads.">
+<meta name="description" content="Portfolio of Ria Agustin - Digital Marketing, Social Media Specialist, Content Marketing, Performance Marketing, SEO, Paid Ads.">
+<meta name="keywords" content="Digital Marketing, Portfolio, Social Media Specialist, Content Creator, SEO, Paid Ads">
+<meta name="author" content="Ria Agustin">
 
-<meta name="keywords"
-content="Digital Marketing, Portfolio, Social Media Specialist, Content Creator, SEO, Paid Ads">
+<meta property="og:title" content="Ria Agustin Portfolio">
+<meta property="og:description" content="Digital Marketing Portfolio">
+<meta property="og:type" content="website">
 
-<meta name="author"
-content="Ria Agustin">
+<link rel="icon" href="assets/favicon.png">
 
-<meta property="og:title"
-content="Ria Agustin Portfolio">
+<!-- Fonts: Space Grotesk (display), Inter (body), JetBrains Mono (data/eyebrow labels) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 
-<meta property="og:description"
-content="Digital Marketing Portfolio">
+<!-- Tailwind CSS (CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          ink: { DEFAULT: '#0B1120', 800: '#111827', 700: '#1E293B' },
+          paper: { DEFAULT: '#FBFAF7', 100: '#F4F3EF' },
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+        boxShadow: {
+          soft: '0 10px 30px -8px rgba(15,23,42,.12)',
+          glow: '0 12px 32px -6px rgba(79,70,229,.35)',
+        },
+        maxWidth: { site: '1320px' },
+      },
+    },
+  };
+</script>
 
-<meta property="og:type"
-content="website">
+<style>
+  /* ==== Custom CSS: only what Tailwind utilities can't express ==== */
 
-<link rel="icon"
-href="assets/favicon.png">
+  ::selection { background:#4338CA; color:#fff; }
 
-<link rel="stylesheet"
-href="style.css">
+  ::-webkit-scrollbar { width:10px; height:10px; }
+  ::-webkit-scrollbar-track { background:#F1F5F9; }
+  ::-webkit-scrollbar-thumb { background:#4338CA; border-radius:20px; }
+  ::-webkit-scrollbar-thumb:hover { background:#6366F1; }
+  html.dark ::-webkit-scrollbar-track { background:#111827; }
 
+  /* Typing cursor blink */
+  .typing-cursor { animation: blink 1s step-end infinite; }
+  @keyframes blink { 50% { opacity:0; } }
+
+  /* Reveal-on-scroll base state (JS toggles the "is-visible" class) */
+  .reveal { opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.is-visible { opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { transition:none; opacity:1; transform:none; }
+    .typing-cursor { animation:none; }
+  }
+
+  /* Signature hero element: animated growth line */
+  .growth-path { stroke-dasharray:900; stroke-dashoffset:900; animation:draw 2.4s ease-out .3s forwards; }
+  @keyframes draw { to { stroke-dashoffset:0; } }
+</style>
 </head>
 
-<body>
+<body class="font-body bg-paper text-ink dark:bg-ink dark:text-paper antialiased transition-colors duration-300">
 
-<div id="loader">
-
-<div class="spinner"></div>
-
+<!-- ============================================= -->
+<!-- LOADER -->
+<!-- ============================================= -->
+<div id="loader" class="fixed inset-0 z-[100] flex items-center justify-center bg-paper dark:bg-ink transition-opacity duration-500">
+  <div class="h-12 w-12 rounded-full border-4 border-slate-200 dark:border-slate-700 border-t-indigo-600 animate-spin"></div>
 </div>
 
-<div id="progress-bar"></div>
+<!-- SCROLL PROGRESS -->
+<div id="progress-bar" class="fixed top-0 left-0 h-1 w-0 bg-gradient-to-r from-indigo-600 to-orange-500 z-50"></div>
 
-<header>
+<!-- ============================================= -->
+<!-- HEADER / NAV -->
+<!-- ============================================= -->
+<header id="siteHeader" class="fixed top-0 inset-x-0 z-40 bg-paper/80 dark:bg-ink/80 backdrop-blur-md border-b border-slate-200/70 dark:border-slate-800/70 transition-shadow duration-300">
+  <nav class="max-w-site mx-auto flex items-center justify-between gap-4 px-5 sm:px-8 py-3 md:py-4">
 
-<nav class="navbar">
+    <a href="#home" class="font-display text-xl sm:text-2xl font-bold tracking-tight text-ink dark:text-white">
+      Ria<span class="text-indigo-600 dark:text-indigo-400"> Agustin</span>
+    </a>
 
-<div class="logo">
+    <ul class="nav-menu hidden md:flex items-center gap-7 text-sm font-medium text-slate-600 dark:text-slate-300">
+      <li><a href="#home" class="nav-link py-1 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400">Home</a></li>
+      <li><a href="#about" class="nav-link py-1 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400">About</a></li>
+      <li><a href="#skills" class="nav-link py-1 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400">Skills</a></li>
+      <li><a href="#experience" class="nav-link py-1 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400">Experience</a></li>
+      <li><a href="#projects" class="nav-link py-1 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400">Projects</a></li>
+      <li><a href="#portfolio" class="nav-link py-1 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400">Portfolio</a></li>
+      <li><a href="#certificates" class="nav-link py-1 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400">Certificates</a></li>
+      <li><a href="#education" class="nav-link py-1 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400">Education</a></li>
+      <li><a href="#contact" class="nav-link py-1 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400">Contact</a></li>
+    </ul>
 
-Ria Agustin <span>Portfolio</span>
+    <div class="flex items-center gap-2 sm:gap-3">
+      <button id="darkModeBtn" aria-label="Toggle dark mode"
+        class="h-9 w-9 sm:h-10 sm:w-10 grid place-items-center rounded-full border border-slate-200 dark:border-slate-700 text-base hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
+        🌙
+      </button>
 
-</div>
+      <a href="#contact" class="hidden sm:inline-flex items-center rounded-full bg-indigo-600 text-white text-sm font-semibold px-5 py-2.5 shadow-glow hover:bg-indigo-700 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2">
+        Hire Me
+      </a>
 
-<ul class="nav-menu">
+      <button id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false"
+        class="md:hidden flex flex-col justify-center items-center gap-[5px] h-10 w-10 rounded-full border border-slate-200 dark:border-slate-700">
+        <span class="hb-bar block h-[2px] w-5 bg-ink dark:bg-white rounded-full transition-all duration-300"></span>
+        <span class="hb-bar block h-[2px] w-5 bg-ink dark:bg-white rounded-full transition-all duration-300"></span>
+        <span class="hb-bar block h-[2px] w-5 bg-ink dark:bg-white rounded-full transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
 
-<li><a href="#home">Home</a></li>
-
-<li><a href="#about">About</a></li>
-
-<li><a href="#skills">Skills</a></li>
-
-<li><a href="#experience">Experience</a></li>
-
-<li><a href="#projects">Projects</a></li>
-
-<li><a href="#portfolio">Portfolio</a></li>
-
-<li><a href="#certificates">Certificates</a></li>
-
-<li><a href="#education">Education</a></li>
-
-<li><a href="#contact">Contact</a></li>
-
-</ul>
-
-<div class="nav-right">
-
-<button id="darkMode">
-
-🌙
-
-</button>
-
-<div class="hamburger">
-
-<span></span>
-
-<span></span>
-
-<span></span>
-
-</div>
-
-</div>
-
-</nav>
-
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="md:hidden hidden flex-col gap-1 bg-paper dark:bg-ink border-t border-slate-200 dark:border-slate-800 px-5 py-3 shadow-soft">
+    <a href="#home" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800 hover:text-indigo-600 transition-colors">Home</a>
+    <a href="#about" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800 hover:text-indigo-600 transition-colors">About</a>
+    <a href="#skills" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800 hover:text-indigo-600 transition-colors">Skills</a>
+    <a href="#experience" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800 hover:text-indigo-600 transition-colors">Experience</a>
+    <a href="#projects" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800 hover:text-indigo-600 transition-colors">Projects</a>
+    <a href="#portfolio" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800 hover:text-indigo-600 transition-colors">Portfolio</a>
+    <a href="#certificates" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800 hover:text-indigo-600 transition-colors">Certificates</a>
+    <a href="#education" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800 hover:text-indigo-600 transition-colors">Education</a>
+    <a href="#contact" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800 hover:text-indigo-600 transition-colors">Contact</a>
+  </div>
 </header>
 
 <main>
 
-<section id="home" class="hero">
-
-<div class="hero-left">
-
-<p class="small-text">
-
-Hello, I'm
-
-</p>
-
-<h1>
-
-Ria Agustin
-
-</h1>
-
-<h2 class="hero-role">
-
-Social Media Specialist
-<span>|</span>
-
-Digital Marketing
-<span>|</span>
-
-Marketing Strategy
-<span>|</span>
-
-Marketing Analytics
-<span>|</span>
-
-Meta Ads
-<span>|</span>
-
-Tiktok Ads
-
-</h2>
-
-<p>
-
-Highly motivated Agribusiness undergraduate with hands-on experience in Digital Marketing, Social Media Management, Content Strategy, Marketing Campaigns, and Project Handling. Passionate about building impactful digital experiences and helping brands grow through data-driven marketing.
-
-</p>
-
-<div class="hero-button">
-
-<a href="#contact" class="btn-primary">
-
-Hire Me
-
-</a>
-
-<a href="assets/ria-agustin-cv.pdf"
-    
-   target="_blank"
-    
-   class="btn-secondary">
-
-    View CV
-
-</a>
-
-</div>
-
-</div>
-
-<div class="hero-right">
-
-<img src="assets/profile.jpg"
-alt="Ria Agustin">
-
-</div>
-
-</section>
-
-<section id="about">
-
-<div class="section-title">
-
-<h2>
-
-About Me
-
-</h2>
-
-<p>
-
-Get to know me better
-
-</p>
-
-</div>
-
-<div class="about-container">
-
-<div class="about-image">
-
-<img src="assets/profile2.jpg"
-alt="About Ria">
-
-</div>
-
-<div class="about-content">
-
-<h3>
-
-Digital Marketing Enthusiast
-
-</h3>
-
-<p>
-
-I am an Agribusiness undergraduate at Padjadjaran University with practical experience in Digital Marketing, Social Media Management, Marketing Campaigns, Content Creation, and Business Development. Throughout internships, work experiences, and organizational activities, I have developed strong analytical, communication, and project management skills.
-
-</p>
-
-<div class="about-grid">
-
-      <div class="info-card">
-        <h4>Location</h4>
-        <p>Depok, Indonesia</p>
-    </div>
-
-    <div class="info-card">
-        <h4>Education</h4>
-        <p>Universitas Padjadjaran</p>
-    </div>
-
-    <div class="info-card">
-        <h4>Interest</h4>
-        <p>Digital Marketing</p>
-    </div>
-
-    <div class="info-card">
-        <h4>Email</h4>
-        <p>26riaagustinn@gmail.com</p>
-    </div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="skills">
-
-<div class="section-title">
-
-<h2>
-
-Skills
-
-</h2>
-
-<p>
-
-Professional Skills
-
-</p>
-
-</div>
-
-<div class="skills-container">
-
-<div class="skill-card">
-
-<h3>
-
-Digital Marketing
-
-</h3>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
-
-Social Media Management
-
-</h3>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
-
-Content Strategy
-
-</h3>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
-
-Content Creation
-
-</h3>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
-
-Marketing Campaign
-
-</h3>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
-
-TikTok Ads
-
-</h3>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
-
-KOL & Influencer Marketing
-
-</h3>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
-
-Copywriting
-
-</h3>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
-
-E-Commerce
-
-</h3>
-
-</div>
-
-<div class="skill-card">
-
-<h3>
-
-Communication
-
-</h3>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ========================================= -->
-<!-- WORK EXPERIENCE -->
-<!-- ========================================= -->
-
-<section id="experience">
-
-    <div class="section-title">
-        <h2>Work Experience</h2>
-        <p>Professional Journey</p>
-    </div>
-
-    <div class="timeline">
-
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-
-            <div class="timeline-content">
-
-                <span class="timeline-date">
-                    Feb 2026 – May 2026
-                </span>
-
-                <h3>
-                    Social Media Specialist Intern
-                </h3>
-
-                <h4>
-                    PT Pramudita Darya Parma
-                </h4>
-
-                <ul>
-
-                    <li>Planned and executed end-to-end content production.</li>
-
-                    <li>Managed TikTok Ads and evaluated campaign performance.</li>
-
-                    <li>Researched KOLs, influencers, and affiliate partners.</li>
-
-                    <li>Supported campaign execution across social media and e-commerce platforms.</li>
-
-                    <li>Hosted and assisted live streaming sessions.</li>
-
-                    <li>Contributed to social media growth during company rebranding.</li>
-
-                </ul>
-
-            </div>
-
-        </div>
-
-        <div class="timeline-item">
-
-            <div class="timeline-dot"></div>
-
-            <div class="timeline-content">
-
-                <span class="timeline-date">
-                    May 2024 – Aug 2024
-                </span>
-
-                <h3>
-                    Marketing & Project Handler
-                </h3>
-
-                <h4>
-                    PT Digital Investa Indonesia
-                </h4>
-
-                <ul>
-
-                    <li>Approached 500+ prospective companies.</li>
-
-                    <li>Maintained daily outreach reports.</li>
-
-                    <li>Conducted client meetings.</li>
-
-                    <li>Collaborated with teammates through weekly meetings.</li>
-
-                </ul>
-
-            </div>
-
-        </div>
-
-        <div class="timeline-item">
-
-            <div class="timeline-dot"></div>
-
-            <div class="timeline-content">
-
-                <span class="timeline-date">
-                    Aug 2025 – Dec 2025
-                </span>
-
-                <h3>
-                    Barista & Marketing
-                </h3>
-
-                <h4>
-                    Mahatma Coffee Unpad
-                </h4>
-
-                <ul>
-
-                    <li>Created marketing strategies.</li>
-
-                    <li>Managed social media.</li>
-
-                    <li>Produced content reaching 72K+ engagement.</li>
-
-                </ul>
-
-            </div>
-
-        </div>
-
-        <div class="timeline-item">
-
-            <div class="timeline-dot"></div>
-
-            <div class="timeline-content">
-
-                <span class="timeline-date">
-                    Jul 2025 – Sep 2025
-                </span>
-
-                <h3>
-                    Marketing Intern
-                </h3>
-
-                <h4>
-                    Tropis Coffee Indonesia
-                </h4>
-
-                <ul>
-
-                    <li>Created educational coffee content.</li>
-
-                    <li>Planned social media content.</li>
-
-                    <li>Learned coffee production from upstream to downstream.</li>
-
-                </ul>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ========================================= -->
-<!-- PROJECTS -->
-<!-- ========================================= -->
-
-<section id="projects">
-
-    <div class="section-title">
-
-        <h2>Projects</h2>
-
-        <p>Selected Marketing Projects</p>
-
-    </div>
-
-    <div class="project-grid">
-
-        <article class="project-card">
-
-            <img src="assets/socmedgrowth.png" alt="TikTok Growth Project">
-
-            <div class="project-content">
-
-                <h3>
-                    Social Media Growth
-                </h3>
-
-                <p>
-                    Supported brand rebranding and social media development
-                    through strategic content planning and campaign execution.
-                </p>
-
-            </div>
-
-        </article>
-
-        <article class="project-card">
-
-            <img src="assets/coffeemarketing.png" alt="Coffee Marketing">
-
-            <div class="project-content">
-
-                <h3>
-                    Coffee Content Marketing
-                </h3>
-
-                <p>
-                    Produced educational and entertaining coffee content
-                    for MSME branding.
-                </p>
-
-            </div>
-
-        </article>
-
-        <article class="project-card">
-
-            <img src="assets/project3.jpg" alt="TikTok Ads">
-
-            <div class="project-content">
-
-                <h3>
-                    TikTok Ads Optimization
-                </h3>
-
-                <p>
-                    Assisted advertising evaluation and campaign monitoring.
-                </p>
-
-            </div>
-
-        </article>
-
-    </div>
-
-</section>
-
-<!-- ========================================= -->
-<!-- PORTFOLIO -->
-<!-- ========================================= -->
-
-<section id="portfolio">
-
-    <div class="section-title">
-
-        <h2>Portfolio Gallery</h2>
-
-        <p>Selected Works</p>
-
-    </div>
-
-    <div class="gallery">
-
-        <img src="assets/gallery1.jpg" alt="Portfolio 1">
-
-        <img src="assets/gallery2.jpg" alt="Portfolio 2">
-
-        <img src="assets/gallery3.jpg" alt="Portfolio 3">
-
-        <img src="assets/gallery4.jpg" alt="Portfolio 4">
-
-        <img src="assets/gallery5.jpg" alt="Portfolio 5">
-
-        <img src="assets/gallery6.jpg" alt="Portfolio 6">
-
-    </div>
-
-</section>
-
-<!-- ========================================= -->
-<!-- CERTIFICATES -->
-<!-- ========================================= -->
-
-<section id="certificates">
-
-    <div class="section-title">
-
-        <h2>Certificates</h2>
-
-        <p>Training & Certifications</p>
-
-    </div>
-
-   <div class="certificate-featured">
-
-    <div class="certificate-image">
-
-        <img src="assets/SCM-certificate.jpg"
-             alt="Social Media Specialist Certificate">
-
-    </div>
-
-    <div class="certificate-info">
-
-        <h3>Social Media Specialist Bootcamp Program</h3>
-
-        <h4>EDUWORK</h4>
-
-        <p>
-            Completed an intensive bootcamp focused on developing practical digital marketing and social media management skills through hands-on projects and campaign planning.
+  <!-- ============================================= -->
+  <!-- HERO -->
+  <!-- ============================================= -->
+  <section id="home" class="relative overflow-hidden px-5 sm:px-8 pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-40 md:pb-24">
+    <!-- signature decorative growth line -->
+    <svg class="pointer-events-none absolute -right-16 top-10 w-[420px] max-w-none opacity-[0.08] dark:opacity-[0.12] hidden sm:block" viewBox="0 0 400 200" fill="none" aria-hidden="true">
+      <path class="growth-path" d="M0 170 L60 140 L110 155 L170 90 L230 110 L290 40 L400 10" stroke="#4338CA" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+    <div class="relative max-w-site mx-auto grid md:grid-cols-[1.1fr_0.9fr] gap-10 md:gap-16 items-center">
+
+      <div class="text-center md:text-left">
+        <p class="font-mono text-xs sm:text-sm tracking-[0.2em] uppercase text-indigo-600 dark:text-indigo-400 font-semibold mb-3">Hello, I'm</p>
+
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight text-ink dark:text-white">
+          Ria Agustin
+        </h1>
+
+        <h2 class="mt-4 mb-5 min-h-[1.8em] text-lg sm:text-xl md:text-2xl font-semibold text-indigo-600 dark:text-indigo-400">
+          <span id="typing"></span><span class="typing-cursor">|</span>
+        </h2>
+
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl mx-auto md:mx-0 mb-8 text-[15px] sm:text-base">
+          Highly motivated Agribusiness undergraduate with hands-on experience in Digital Marketing, Social Media Management, Content Strategy, Marketing Campaigns, and Project Handling. Passionate about building impactful digital experiences and helping brands grow through data-driven marketing.
         </p>
 
-        <ul>
+        <div class="flex flex-wrap justify-center md:justify-start gap-3 sm:gap-4">
+          <a href="#contact" class="inline-flex items-center justify-center rounded-full bg-indigo-600 text-white font-semibold text-sm sm:text-base px-6 sm:px-7 py-3 sm:py-3.5 shadow-glow hover:bg-indigo-700 hover:-translate-y-1 active:translate-y-0 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2">
+            Hire Me
+          </a>
+          <a href="assets/ria-agustin-cv.pdf" target="_blank" rel="noopener"
+             class="inline-flex items-center justify-center rounded-full border-2 border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 font-semibold text-sm sm:text-base px-6 sm:px-7 py-3 sm:py-3.5 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2">
+            View CV
+          </a>
+        </div>
+      </div>
 
-            <li>Social Media Strategy</li>
+      <div class="relative flex justify-center order-first md:order-last">
+        <div class="absolute -inset-4 rounded-[32px] bg-gradient-to-br from-indigo-200/50 to-orange-200/40 dark:from-indigo-500/10 dark:to-orange-500/10 blur-2xl -z-10"></div>
+        <img src="assets/profile.jpg" alt="Ria Agustin"
+             class="w-full max-w-[280px] sm:max-w-[340px] rounded-[28px] shadow-soft ring-1 ring-slate-900/5 object-cover aspect-[4/5]">
+      </div>
+    </div>
+  </section>
 
-            <li>Content Strategy & Planning</li>
+  <!-- ============================================= -->
+  <!-- ABOUT -->
+  <!-- ============================================= -->
+  <section id="about" class="reveal px-5 sm:px-8 py-14 sm:py-20 md:py-28">
+    <div class="text-center max-w-xl mx-auto mb-10 sm:mb-14">
+      <p class="font-mono text-xs tracking-[0.2em] uppercase text-indigo-600 dark:text-indigo-400 font-semibold mb-2">About Me</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink dark:text-white">Get to know me better</h2>
+    </div>
 
-            <li>Copywriting for Marketing</li>
+    <div class="max-w-site mx-auto grid md:grid-cols-[340px_1fr] gap-10 md:gap-14 items-center">
+      <div class="order-first">
+        <img src="assets/profile2.jpg" alt="About Ria"
+             class="w-full rounded-[24px] shadow-soft ring-1 ring-slate-900/5 object-cover aspect-[4/3] md:aspect-[4/5]">
+      </div>
 
-            <li>KOL & Influencer Marketing</li>
+      <div>
+        <h3 class="font-display text-2xl sm:text-3xl font-bold text-ink dark:text-white mb-4">Digital Marketing Enthusiast</h3>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-8 text-[15px] sm:text-base">
+          I am an Agribusiness undergraduate at Padjadjaran University with practical experience in Digital Marketing, Social Media Management, Marketing Campaigns, Content Creation, and Business Development. Throughout internships, work experiences, and organizational activities, I have developed strong analytical, communication, and project management skills.
+        </p>
 
-            <li>Social Media Advertising (TikTok & Meta Ads)</li>
+        <div class="grid grid-cols-2 gap-3 sm:gap-4">
+          <div class="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 p-4 sm:p-5 hover:-translate-y-1 hover:shadow-soft transition-all duration-300">
+            <h4 class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm mb-1">Location</h4>
+            <p class="text-sm text-slate-600 dark:text-slate-300">Depok, Indonesia</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 p-4 sm:p-5 hover:-translate-y-1 hover:shadow-soft transition-all duration-300">
+            <h4 class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm mb-1">Education</h4>
+            <p class="text-sm text-slate-600 dark:text-slate-300">Universitas Padjadjaran</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 p-4 sm:p-5 hover:-translate-y-1 hover:shadow-soft transition-all duration-300">
+            <h4 class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm mb-1">Interest</h4>
+            <p class="text-sm text-slate-600 dark:text-slate-300">Digital Marketing</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 p-4 sm:p-5 hover:-translate-y-1 hover:shadow-soft transition-all duration-300">
+            <h4 class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm mb-1">Email</h4>
+            <p class="text-sm text-slate-600 dark:text-slate-300 break-all">26riaagustinn@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <li>Marketing Analytics & Reporting</li>
+  <!-- ============================================= -->
+  <!-- SKILLS -->
+  <!-- ============================================= -->
+  <section id="skills" class="reveal px-5 sm:px-8 py-14 sm:py-20 md:py-28 bg-slate-50/70 dark:bg-slate-900/40">
+    <div class="text-center max-w-xl mx-auto mb-10 sm:mb-14">
+      <p class="font-mono text-xs tracking-[0.2em] uppercase text-indigo-600 dark:text-indigo-400 font-semibold mb-2">Skills</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink dark:text-white">Professional Skills</h2>
+    </div>
 
+    <div class="max-w-site mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-5">
+      <div class="skill-card group rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 px-4 py-6 sm:py-8 text-center hover:-translate-y-1.5 hover:border-indigo-400 hover:shadow-soft transition-all duration-300">
+        <h3 class="text-sm sm:text-base font-semibold text-ink dark:text-white">Digital Marketing</h3>
+      </div>
+      <div class="skill-card group rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 px-4 py-6 sm:py-8 text-center hover:-translate-y-1.5 hover:border-indigo-400 hover:shadow-soft transition-all duration-300">
+        <h3 class="text-sm sm:text-base font-semibold text-ink dark:text-white">Social Media Management</h3>
+      </div>
+      <div class="skill-card group rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 px-4 py-6 sm:py-8 text-center hover:-translate-y-1.5 hover:border-indigo-400 hover:shadow-soft transition-all duration-300">
+        <h3 class="text-sm sm:text-base font-semibold text-ink dark:text-white">Content Strategy</h3>
+      </div>
+      <div class="skill-card group rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 px-4 py-6 sm:py-8 text-center hover:-translate-y-1.5 hover:border-indigo-400 hover:shadow-soft transition-all duration-300">
+        <h3 class="text-sm sm:text-base font-semibold text-ink dark:text-white">Content Creation</h3>
+      </div>
+      <div class="skill-card group rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 px-4 py-6 sm:py-8 text-center hover:-translate-y-1.5 hover:border-indigo-400 hover:shadow-soft transition-all duration-300">
+        <h3 class="text-sm sm:text-base font-semibold text-ink dark:text-white">Marketing Campaign</h3>
+      </div>
+      <div class="skill-card group rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 px-4 py-6 sm:py-8 text-center hover:-translate-y-1.5 hover:border-indigo-400 hover:shadow-soft transition-all duration-300">
+        <h3 class="text-sm sm:text-base font-semibold text-ink dark:text-white">TikTok Ads</h3>
+      </div>
+      <div class="skill-card group rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 px-4 py-6 sm:py-8 text-center hover:-translate-y-1.5 hover:border-indigo-400 hover:shadow-soft transition-all duration-300">
+        <h3 class="text-sm sm:text-base font-semibold text-ink dark:text-white">KOL &amp; Influencer Marketing</h3>
+      </div>
+      <div class="skill-card group rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 px-4 py-6 sm:py-8 text-center hover:-translate-y-1.5 hover:border-indigo-400 hover:shadow-soft transition-all duration-300">
+        <h3 class="text-sm sm:text-base font-semibold text-ink dark:text-white">Copywriting</h3>
+      </div>
+      <div class="skill-card group rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 px-4 py-6 sm:py-8 text-center hover:-translate-y-1.5 hover:border-indigo-400 hover:shadow-soft transition-all duration-300">
+        <h3 class="text-sm sm:text-base font-semibold text-ink dark:text-white">E-Commerce</h3>
+      </div>
+      <div class="skill-card group rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 px-4 py-6 sm:py-8 text-center hover:-translate-y-1.5 hover:border-indigo-400 hover:shadow-soft transition-all duration-300">
+        <h3 class="text-sm sm:text-base font-semibold text-ink dark:text-white">Communication</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- WORK EXPERIENCE -->
+  <!-- ============================================= -->
+  <section id="experience" class="reveal px-5 sm:px-8 py-14 sm:py-20 md:py-28">
+    <div class="text-center max-w-xl mx-auto mb-10 sm:mb-14">
+      <p class="font-mono text-xs tracking-[0.2em] uppercase text-indigo-600 dark:text-indigo-400 font-semibold mb-2">Work Experience</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink dark:text-white">Professional Journey</h2>
+    </div>
+
+    <div class="max-w-site mx-auto grid md:grid-cols-2 gap-5 sm:gap-7">
+
+      <div class="timeline-item reveal rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 shadow-soft p-6 sm:p-7 hover:-translate-y-1 transition-transform duration-300">
+        <span class="font-mono text-xs sm:text-sm font-semibold text-indigo-600 dark:text-indigo-400">Feb 2026 – May 2026</span>
+        <h3 class="font-display text-lg sm:text-xl font-bold text-ink dark:text-white mt-2">Social Media Specialist Intern</h3>
+        <h4 class="text-sm text-slate-500 dark:text-slate-400 mb-4">PT Pramudita Darya Parma</h4>
+        <ul class="space-y-1.5 text-sm text-slate-600 dark:text-slate-300 list-disc pl-5 marker:text-indigo-500">
+          <li>Planned and executed end-to-end content production.</li>
+          <li>Managed TikTok Ads and evaluated campaign performance.</li>
+          <li>Researched KOLs, influencers, and affiliate partners.</li>
+          <li>Supported campaign execution across social media and e-commerce platforms.</li>
+          <li>Hosted and assisted live streaming sessions.</li>
+          <li>Contributed to social media growth during company rebranding.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 shadow-soft p-6 sm:p-7 hover:-translate-y-1 transition-transform duration-300">
+        <span class="font-mono text-xs sm:text-sm font-semibold text-indigo-600 dark:text-indigo-400">May 2024 – Aug 2024</span>
+        <h3 class="font-display text-lg sm:text-xl font-bold text-ink dark:text-white mt-2">Marketing &amp; Project Handler</h3>
+        <h4 class="text-sm text-slate-500 dark:text-slate-400 mb-4">PT Digital Investa Indonesia</h4>
+        <ul class="space-y-1.5 text-sm text-slate-600 dark:text-slate-300 list-disc pl-5 marker:text-indigo-500">
+          <li>Approached 500+ prospective companies.</li>
+          <li>Maintained daily outreach reports.</li>
+          <li>Conducted client meetings.</li>
+          <li>Collaborated with teammates through weekly meetings.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 shadow-soft p-6 sm:p-7 hover:-translate-y-1 transition-transform duration-300">
+        <span class="font-mono text-xs sm:text-sm font-semibold text-indigo-600 dark:text-indigo-400">Aug 2025 – Dec 2025</span>
+        <h3 class="font-display text-lg sm:text-xl font-bold text-ink dark:text-white mt-2">Barista &amp; Marketing</h3>
+        <h4 class="text-sm text-slate-500 dark:text-slate-400 mb-4">Mahatma Coffee Unpad</h4>
+        <ul class="space-y-1.5 text-sm text-slate-600 dark:text-slate-300 list-disc pl-5 marker:text-indigo-500">
+          <li>Created marketing strategies.</li>
+          <li>Managed social media.</li>
+          <li>Produced content reaching 72K+ engagement.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 shadow-soft p-6 sm:p-7 hover:-translate-y-1 transition-transform duration-300">
+        <span class="font-mono text-xs sm:text-sm font-semibold text-indigo-600 dark:text-indigo-400">Jul 2025 – Sep 2025</span>
+        <h3 class="font-display text-lg sm:text-xl font-bold text-ink dark:text-white mt-2">Marketing Intern</h3>
+        <h4 class="text-sm text-slate-500 dark:text-slate-400 mb-4">Tropis Coffee Indonesia</h4>
+        <ul class="space-y-1.5 text-sm text-slate-600 dark:text-slate-300 list-disc pl-5 marker:text-indigo-500">
+          <li>Created educational coffee content.</li>
+          <li>Planned social media content.</li>
+          <li>Learned coffee production from upstream to downstream.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- PROJECTS -->
+  <!-- ============================================= -->
+  <section id="projects" class="reveal px-5 sm:px-8 py-14 sm:py-20 md:py-28 bg-slate-50/70 dark:bg-slate-900/40">
+    <div class="text-center max-w-xl mx-auto mb-10 sm:mb-14">
+      <p class="font-mono text-xs tracking-[0.2em] uppercase text-indigo-600 dark:text-indigo-400 font-semibold mb-2">Projects</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink dark:text-white">Selected Marketing Projects</h2>
+    </div>
+
+    <div class="max-w-site mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7">
+      <article class="project-card reveal rounded-2xl overflow-hidden bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 shadow-soft hover:-translate-y-1.5 transition-transform duration-300">
+        <img src="assets/socmedgrowth.png" alt="TikTok Growth Project" class="h-48 sm:h-56 w-full object-cover">
+        <div class="p-5 sm:p-6">
+          <h3 class="font-display text-lg font-bold text-ink dark:text-white mb-2">Social Media Growth</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Supported brand rebranding and social media development through strategic content planning and campaign execution.</p>
+        </div>
+      </article>
+
+      <article class="project-card reveal rounded-2xl overflow-hidden bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 shadow-soft hover:-translate-y-1.5 transition-transform duration-300">
+        <img src="assets/coffeemarketing.png" alt="Coffee Marketing" class="h-48 sm:h-56 w-full object-cover">
+        <div class="p-5 sm:p-6">
+          <h3 class="font-display text-lg font-bold text-ink dark:text-white mb-2">Coffee Content Marketing</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Produced educational and entertaining coffee content for MSME branding.</p>
+        </div>
+      </article>
+
+      <article class="project-card reveal rounded-2xl overflow-hidden bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 shadow-soft hover:-translate-y-1.5 transition-transform duration-300 sm:col-span-2 lg:col-span-1">
+        <img src="assets/project3.jpg" alt="TikTok Ads" class="h-48 sm:h-56 w-full object-cover">
+        <div class="p-5 sm:p-6">
+          <h3 class="font-display text-lg font-bold text-ink dark:text-white mb-2">TikTok Ads Optimization</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Assisted advertising evaluation and campaign monitoring.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- PORTFOLIO GALLERY -->
+  <!-- ============================================= -->
+  <section id="portfolio" class="reveal px-5 sm:px-8 py-14 sm:py-20 md:py-28">
+    <div class="text-center max-w-xl mx-auto mb-10 sm:mb-14">
+      <p class="font-mono text-xs tracking-[0.2em] uppercase text-indigo-600 dark:text-indigo-400 font-semibold mb-2">Portfolio Gallery</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink dark:text-white">Selected Works</h2>
+    </div>
+
+    <div class="max-w-site mx-auto grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
+      <img src="assets/gallery1.jpg" alt="Portfolio 1" class="rounded-xl sm:rounded-2xl h-40 sm:h-56 w-full object-cover cursor-pointer hover:scale-[1.04] transition-transform duration-300">
+      <img src="assets/gallery2.jpg" alt="Portfolio 2" class="rounded-xl sm:rounded-2xl h-40 sm:h-56 w-full object-cover cursor-pointer hover:scale-[1.04] transition-transform duration-300">
+      <img src="assets/gallery3.jpg" alt="Portfolio 3" class="rounded-xl sm:rounded-2xl h-40 sm:h-56 w-full object-cover cursor-pointer hover:scale-[1.04] transition-transform duration-300">
+      <img src="assets/gallery4.jpg" alt="Portfolio 4" class="rounded-xl sm:rounded-2xl h-40 sm:h-56 w-full object-cover cursor-pointer hover:scale-[1.04] transition-transform duration-300">
+      <img src="assets/gallery5.jpg" alt="Portfolio 5" class="rounded-xl sm:rounded-2xl h-40 sm:h-56 w-full object-cover cursor-pointer hover:scale-[1.04] transition-transform duration-300">
+      <img src="assets/gallery6.jpg" alt="Portfolio 6" class="rounded-xl sm:rounded-2xl h-40 sm:h-56 w-full object-cover cursor-pointer hover:scale-[1.04] transition-transform duration-300">
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- CERTIFICATES -->
+  <!-- ============================================= -->
+  <section id="certificates" class="reveal px-5 sm:px-8 py-14 sm:py-20 md:py-28 bg-slate-50/70 dark:bg-slate-900/40">
+    <div class="text-center max-w-xl mx-auto mb-10 sm:mb-14">
+      <p class="font-mono text-xs tracking-[0.2em] uppercase text-indigo-600 dark:text-indigo-400 font-semibold mb-2">Certificates</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink dark:text-white">Training &amp; Certifications</h2>
+    </div>
+
+    <div class="max-w-site mx-auto grid md:grid-cols-[380px_1fr] gap-8 sm:gap-10 items-center bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-3xl shadow-soft p-6 sm:p-10">
+      <img src="assets/SCM-certificate.jpg" alt="Social Media Specialist Certificate" class="w-full rounded-2xl shadow-soft">
+
+      <div>
+        <h3 class="font-display text-xl sm:text-2xl font-bold text-ink dark:text-white mb-1">Social Media Specialist Bootcamp Program</h3>
+        <h4 class="text-indigo-600 dark:text-indigo-400 font-semibold mb-4">EDUWORK</h4>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-5 text-[15px] sm:text-base">
+          Completed an intensive bootcamp focused on developing practical digital marketing and social media management skills through hands-on projects and campaign planning.
+        </p>
+
+        <ul class="space-y-2 mb-7 text-sm text-slate-600 dark:text-slate-300 list-disc pl-5 marker:text-indigo-500">
+          <li>Social Media Strategy</li>
+          <li>Content Strategy &amp; Planning</li>
+          <li>Copywriting for Marketing</li>
+          <li>KOL &amp; Influencer Marketing</li>
+          <li>Social Media Advertising (TikTok &amp; Meta Ads)</li>
+          <li>Marketing Analytics &amp; Reporting</li>
         </ul>
 
-        <a href="assets/meta-certificate.jpg"
-           target="_blank"
-           class="btn-primary">
-
-            View Certificate
-
+        <a href="assets/meta-certificate.jpg" target="_blank" rel="noopener"
+           class="inline-flex items-center justify-center rounded-full bg-indigo-600 text-white font-semibold text-sm px-6 py-3 shadow-glow hover:bg-indigo-700 hover:-translate-y-1 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2">
+          View Certificate
         </a>
+      </div>
+    </div>
+  </section>
 
+  <!-- ============================================= -->
+  <!-- EDUCATION -->
+  <!-- ============================================= -->
+  <section id="education" class="reveal px-5 sm:px-8 py-14 sm:py-20 md:py-28">
+    <div class="text-center max-w-xl mx-auto mb-10 sm:mb-14">
+      <p class="font-mono text-xs tracking-[0.2em] uppercase text-indigo-600 dark:text-indigo-400 font-semibold mb-2">Education</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink dark:text-white">Academic Background</h2>
     </div>
 
-</div>
-    
-</section>
+    <div class="max-w-lg mx-auto text-center bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-3xl shadow-soft p-8 sm:p-12">
+      <h3 class="font-display text-xl sm:text-2xl font-bold text-ink dark:text-white mb-2">Universitas Padjadjaran</h3>
+      <span class="block text-indigo-600 dark:text-indigo-400 font-semibold mb-4">Bachelor of Agribusiness</span>
+      <p class="text-slate-600 dark:text-slate-300 mb-1">GPA 3.65 / 4.00</p>
+      <p class="font-mono text-sm text-slate-500 dark:text-slate-400">2022 – 2026</p>
+    </div>
+  </section>
 
-<!-- ========================================= -->
-<!-- EDUCATION -->
-<!-- ========================================= -->
-
-<section id="education">
-
-    <div class="section-title">
-
-        <h2>Education</h2>
-
-        <p>Academic Background</p>
-
+  <!-- ============================================= -->
+  <!-- CONTACT -->
+  <!-- ============================================= -->
+  <section id="contact" class="reveal px-5 sm:px-8 py-14 sm:py-20 md:py-28 bg-slate-50/70 dark:bg-slate-900/40">
+    <div class="text-center max-w-xl mx-auto mb-10 sm:mb-14">
+      <p class="font-mono text-xs tracking-[0.2em] uppercase text-indigo-600 dark:text-indigo-400 font-semibold mb-2">Contact</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink dark:text-white">Let's Work Together</h2>
     </div>
 
-    <div class="education-card">
-
-        <h3>
-
-            Universitas Padjadjaran
-
-        </h3>
-
-        <h4>
-
-            Bachelor of Agribusiness
-
-        </h4>
-
-        <p>
-
-            GPA 3.65 / 4.00
-
-        </p>
-
-        <span>
-
-            2022 – 2026
-
-        </span>
-
+    <div class="max-w-3xl mx-auto grid sm:grid-cols-3 gap-4 sm:gap-6">
+      <a href="mailto:26riaagustinn@gmail.com" class="group rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 p-6 text-center hover:-translate-y-1 hover:border-indigo-400 hover:shadow-soft transition-all duration-300">
+        <h3 class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm mb-2">Email</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 break-all group-hover:text-ink dark:group-hover:text-white transition-colors">26riaagustinn@gmail.com</p>
+      </a>
+      <a href="tel:+6285795357847" class="group rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 p-6 text-center hover:-translate-y-1 hover:border-indigo-400 hover:shadow-soft transition-all duration-300">
+        <h3 class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm mb-2">Phone</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-ink dark:group-hover:text-white transition-colors">+62 857 9535 7847</p>
+      </a>
+      <div class="rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 p-6 text-center">
+        <h3 class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm mb-2">Location</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300">Depok, West Java, Indonesia</p>
+      </div>
     </div>
-
-</section>
-
-<!-- ========================================= -->
-<!-- CONTACT -->
-<!-- ========================================= -->
-
-<section id="contact">
-
-    <div class="section-title">
-
-        <h2>Contact</h2>
-
-        <p>Let's Work Together</p>
-
-    </div>
-
-    <div class="contact-container">
-
-        <div class="contact-info">
-
-            <h3>
-
-                Get In Touch
-
-            </h3>
-
-            <p>
-
-                Email<br>
-                26riaagustinn@gmail.com
-
-            </p>
-
-            <p>
-
-                Phone<br>
-                +62 857 9535 7847
-
-            </p>
-
-            <p>
-
-                Location<br>
-                Depok, West Java, Indonesia
-
-            </p>
-
-        </div>
-
-</section>
-
-<!-- ========================================= -->
-<!-- FOOTER -->
-<!-- ========================================= -->
-
-<footer>
-
-    <h2>
-
-        Ria Agustin
-
-    </h2>
-
-    <p>
-
-        Digital Marketing | Social Media | Content Marketing
-
-    </p>
-
-    <div class="social-links">
-
-        <a href="https://www.linkedin.com/in/26riaagustin" target="_blank">
-            LinkedIn
-        </a>
-
-        <a href="mailto:26riaagustinn@gmail.com">
-            Email
-        </a>
-
-    </div>
-
-    <p class="copyright">
-
-        © 2026 Ria Agustin. All Rights Reserved.
-
-    </p>
-
-</footer>
+  </section>
 
 </main>
 
-<button id="backToTop" aria-label="Back to top">
+<!-- ============================================= -->
+<!-- FOOTER -->
+<!-- ============================================= -->
+<footer class="mt-4 bg-ink text-white px-5 sm:px-8 py-14 sm:py-16">
+  <div class="max-w-site mx-auto text-center">
+    <h2 class="font-display text-2xl sm:text-3xl font-bold mb-2">Ria Agustin</h2>
+    <p class="text-slate-400 text-sm sm:text-base">Digital Marketing | Social Media | Content Marketing</p>
 
-    ↑
+    <div class="flex flex-wrap justify-center gap-3 sm:gap-4 my-8">
+      <a href="https://www.linkedin.com/in/26riaagustin" target="_blank" rel="noopener"
+         class="rounded-full border border-white/15 px-6 py-2.5 text-sm font-medium hover:bg-indigo-600 hover:border-indigo-600 transition-colors duration-300">
+        LinkedIn
+      </a>
+      <a href="mailto:26riaagustinn@gmail.com"
+         class="rounded-full border border-white/15 px-6 py-2.5 text-sm font-medium hover:bg-indigo-600 hover:border-indigo-600 transition-colors duration-300">
+        Email
+      </a>
+    </div>
 
+    <p class="text-xs text-slate-500">© 2026 Ria Agustin. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button id="backToTop" aria-label="Back to top"
+  class="fixed right-5 bottom-5 sm:right-7 sm:bottom-7 h-11 w-11 sm:h-12 sm:w-12 rounded-full bg-indigo-600 text-white shadow-glow grid place-items-center opacity-0 translate-y-3 pointer-events-none transition-all duration-300 hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 z-40">
+  ↑
 </button>
 
-<script src="script.js"></script>
+<script>
+/* ==========================================
+   RIA AGUSTIN PORTFOLIO — script (Tailwind build)
+========================================== */
+
+/* ---- Loading screen ---- */
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loader');
+  setTimeout(() => {
+    loader.style.opacity = '0';
+    loader.style.pointerEvents = 'none';
+    setTimeout(() => loader.style.visibility = 'hidden', 500);
+  }, 500);
+});
+
+/* ---- Typing effect ---- */
+const typingText = [
+  'Digital Marketing Specialist',
+  'Social Media Specialist',
+  'Performance Marketing',
+  'Growth Marketing'
+];
+let textIndex = 0, charIndex = 0, deleting = false;
+const typingEl = document.getElementById('typing');
+
+function typingEffect() {
+  const current = typingText[textIndex];
+  if (!deleting) {
+    typingEl.textContent = current.substring(0, charIndex);
+    charIndex++;
+    if (charIndex > current.length) {
+      deleting = true;
+      setTimeout(typingEffect, 1500);
+      return;
+    }
+  } else {
+    typingEl.textContent = current.substring(0, charIndex);
+    charIndex--;
+    if (charIndex < 0) {
+      deleting = false;
+      textIndex = (textIndex + 1) % typingText.length;
+    }
+  }
+  setTimeout(typingEffect, deleting ? 40 : 90);
+}
+typingEffect();
+
+/* ---- Sticky navbar + scroll progress (combined scroll listener) ---- */
+const header = document.getElementById('siteHeader');
+const progressBar = document.getElementById('progress-bar');
+const backToTop = document.getElementById('backToTop');
+const sections = document.querySelectorAll('main section[id]');
+const navLinks = document.querySelectorAll('.nav-link, .mobile-link');
+
+function onScroll() {
+  const scrollY = window.scrollY;
+
+  // sticky header shadow
+  header.classList.toggle('shadow-soft', scrollY > 80);
+
+  // scroll progress
+  const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = totalHeight > 0 ? (scrollY / totalHeight) * 100 : 0;
+  progressBar.style.width = progress + '%';
+
+  // back to top visibility
+  const show = scrollY > 500;
+  backToTop.classList.toggle('opacity-0', !show);
+  backToTop.classList.toggle('pointer-events-none', !show);
+  backToTop.classList.toggle('translate-y-3', !show);
+  backToTop.classList.toggle('opacity-100', show);
+  backToTop.classList.toggle('translate-y-0', show);
+
+  // active nav link
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 130;
+    if (scrollY >= sectionTop) current = section.getAttribute('id');
+  });
+  navLinks.forEach(link => {
+    const isActive = link.getAttribute('href') === '#' + current;
+    link.classList.toggle('text-indigo-600', isActive);
+    link.classList.toggle('dark:text-indigo-400', isActive);
+    link.classList.toggle('font-semibold', isActive);
+  });
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ---- Dark mode ---- */
+const darkModeBtn = document.getElementById('darkModeBtn');
+const root = document.documentElement;
+
+if (localStorage.getItem('theme') === 'dark') {
+  root.classList.add('dark');
+  darkModeBtn.textContent = '☀️';
+}
+
+darkModeBtn.addEventListener('click', () => {
+  root.classList.toggle('dark');
+  const isDark = root.classList.contains('dark');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  darkModeBtn.textContent = isDark ? '☀️' : '🌙';
+});
+
+/* ---- Reveal on scroll (IntersectionObserver) ---- */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+
+/* ---- Hamburger menu ---- */
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+const hbBars = hamburgerBtn.querySelectorAll('.hb-bar');
+
+function closeMobileMenu() {
+  mobileMenu.classList.add('hidden');
+  mobileMenu.classList.remove('flex');
+  hamburgerBtn.setAttribute('aria-expanded', 'false');
+  hbBars[0].style.transform = '';
+  hbBars[1].style.opacity = '1';
+  hbBars[2].style.transform = '';
+}
+
+hamburgerBtn.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('flex');
+  mobileMenu.classList.toggle('hidden', !isOpen);
+  hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
+  hbBars[0].style.transform = isOpen ? 'translateY(7px) rotate(45deg)' : '';
+  hbBars[1].style.opacity = isOpen ? '0' : '1';
+  hbBars[2].style.transform = isOpen ? 'translateY(-7px) rotate(-45deg)' : '';
+});
+
+document.querySelectorAll('.mobile-link').forEach(link => {
+  link.addEventListener('click', closeMobileMenu);
+});
+</script>
 
 </body>
 </html>
